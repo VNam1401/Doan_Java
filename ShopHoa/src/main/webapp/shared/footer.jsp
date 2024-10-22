@@ -1,5 +1,6 @@
- <footer class="container">
-            <strong>&copy; 2023 - Student Name - Id </strong>
+<%@page pageEncoding="UTF-8" %>
+<footer class="container">
+            <strong>&copy; 2024 - 2321160085 </strong>
         </footer>
 
         <!-- Optional JavaScript -->
