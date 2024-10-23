@@ -5,21 +5,27 @@ public class DbContext {
     
     private static final String serverName = "localhost:3306";
     private static final String dbName = "HoaTuoiDB";
-    private static final String portNumber = "1433"; 
+//    private static final String portNumber = "1433";
     private static final String userID = "sa";
     private static final String password = "sa";
     
-    public static Connection getConnection() throws SQLException
+    public static Connection getConnection()
     {
-         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(serverName, dbName, password);
-            System.out.println("connect successfully!");
-            
-        } catch (ClassNotFoundException e) {
-            System.out.println("Loi");
-            e.printStackTrace();
+        Connection conn=null;
+        try{ 
+            Class.forName("com.mysql.jdbc.SQLServerDriver");
+            //b2. dinh nghia chuoi ket noi URL
+            String url = "jdbc:mysql://" + serverName + ":" + ";databaseName=" + dbName;
+            //b3.Thiet lap ket noi
+            conn = DriverManager.getConnection(url,userID,password);       
+        }catch(Exception ex){
+            System.out.println("Error:" + ex.toString());
         }
-        return DriverManager.getConnection(serverName, dbName, password);
+        return conn;
+    }
+    
+    public static void main(String[] args)
+    {
+        System.out.println("Ket Qua ket noi:" + DbContext.getConnection());
     }
 }
