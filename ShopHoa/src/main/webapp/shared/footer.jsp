@@ -1,6 +1,6 @@
 <%@page pageEncoding="UTF-8" %>
 <footer class="container">
-            <strong>&copy; 2024 - 2321160085 </strong>
+            <strong>&copy; 2024 - 2321160085-Nguyễn Văn Nam </strong>
         </footer>
 
         <!-- Optional JavaScript -->

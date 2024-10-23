@@ -1,5 +1,5 @@
 <%-- 
-    Document   : add_product
+    Document   : delete_product
     Created on : 24 thg 10, 2024, 01:35:09
     Author     : nguyenvannam
 --%>

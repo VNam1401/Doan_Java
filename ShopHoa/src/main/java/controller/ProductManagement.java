@@ -7,6 +7,7 @@ package controller;
 import dao.HoaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +33,7 @@ public class ProductManagement extends HttpServlet {
         }
         switch (action) {
             case "list":
-                Arraylist<Hoa> dsHoa = hoaDAO.getAll();//Lấy dữ liệu từ tầng hoa
+                ArrayList<Hoa> dsHoa = hoaDAO.getAll();//Lấy dữ liệu từ tầng hoa
                 request.setAttribute("dsHoa", dsHoa); // truyền dữ liệu từ servlet qua JSP
                 request.getRequestDispatcher("admin/list_product.jsp").forward(request, response);
                 break;

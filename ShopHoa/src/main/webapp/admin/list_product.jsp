@@ -1,7 +1,7 @@
 <%-- 
     Document   : list_product
-    Created on : Oct 22, 2024, 4:27:41 PM
-    Author     : ADMIN
+    Created on : 24 thg 10, 2024, 01:35:09
+    Author     : nguyenvannam
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+       
     </body>
 </html>

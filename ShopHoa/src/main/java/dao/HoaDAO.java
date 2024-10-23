@@ -8,6 +8,7 @@ import context.DbContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Hoa;
 
@@ -21,7 +22,7 @@ public class HoaDAO {
     PreparedStatement ps;
     ResultSet rs;
 
-    public ArrayList<Hoa> getTop10() {
+    public ArrayList<Hoa> getTop10() throws SQLException {
         ArrayList<Hoa> ds = new ArrayList<>();
         String sql = "select top 10 * from Hoa order by gia desc";
         conn = DbContext.getConnection();
@@ -38,7 +39,7 @@ public class HoaDAO {
     }
 
     //Phương thức đọc hoa theo thể loại
-    public ArrayList<Hoa> getByCategoryId(int maloai) {
+    public ArrayList<Hoa> getByCategoryId(int maloai) throws SQLException {
         ArrayList<Hoa> ds = new ArrayList<>();
         String sql = "select * from Hoa where maloai=?";
         conn = DbContext.getConnection();
@@ -56,7 +57,7 @@ public class HoaDAO {
     }  
     
     //phuong thuc doc tat ca san pham (Hoa) từ CSDL
-    public ArrayList<Hoa> getAll() {
+    public ArrayList<Hoa> getAll() throws SQLException {
         ArrayList<Hoa> ds = new ArrayList<>();
         String sql = "select * from Hoa";
         conn = DbContext.getConnection();
@@ -73,7 +74,7 @@ public class HoaDAO {
     }
     
     //phuong thuc them mới sản phẩm (Hoa)
-    public boolean Insert (Hoa hoa)
+    public boolean Insert (Hoa hoa) throws SQLException
     {
         String sql = "insert into hoa (tenhoa,gia,hinh,maloai,ngaycapnhat) values (?,?,?,?,?)";
         conn = DbContext.getConnection();
@@ -94,7 +95,7 @@ public class HoaDAO {
     }
     
      //phuong thuc cập nhật sản phẩm (Hoa)
-    public boolean Update (Hoa hoa)
+    public boolean Update (Hoa hoa) throws SQLException
     {
         String sql = "update hoa set tenhoa=?,gia=?,hinh=?,maloai=?,ngaycapnhat=? where mahoa=?";
         conn = DbContext.getConnection();
@@ -116,7 +117,7 @@ public class HoaDAO {
     }
     
     //phuong thuc xoá sản phẩm (Hoa)
-    public boolean Delete (int mahoa)
+    public boolean Delete (int mahoa) throws SQLException
     {
         String sql = "delete from hoa where mahoa=?";
         conn = DbContext.getConnection();
@@ -133,7 +134,7 @@ public class HoaDAO {
     } 
     
     //phuong thuc lấy thông tin sản phẩm (Hoa) theo mã hoa 
-    public Hoa getById(int mahoa) {
+    public Hoa getById(int mahoa) throws SQLException {
         Hoa kq=null;
         String sql = "select * from Hoa where mahoa=?";
         conn = DbContext.getConnection();
@@ -150,7 +151,7 @@ public class HoaDAO {
         return kq;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         HoaDAO hoaDao = new HoaDAO();
         System.out.println("Lay tat ca hoa");
         ArrayList<Hoa> dsHoa = hoaDao.getAll();
