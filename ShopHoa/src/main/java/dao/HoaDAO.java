@@ -22,7 +22,7 @@ public class HoaDAO {
     PreparedStatement ps;
     ResultSet rs;
 
-    public ArrayList<Hoa> getTop10() throws SQLException {
+    public ArrayList<Hoa> getTop10(){
         ArrayList<Hoa> ds = new ArrayList<>();
         String sql = "select top 10 * from Hoa order by gia desc";
         conn = DbContext.getConnection();
@@ -74,7 +74,7 @@ public class HoaDAO {
     }
     
     //phuong thuc them mới sản phẩm (Hoa)
-    public boolean Insert (Hoa hoa) throws SQLException
+    public boolean Insert (Hoa hoa)
     {
         String sql = "insert into hoa (tenhoa,gia,hinh,maloai,ngaycapnhat) values (?,?,?,?,?)";
         conn = DbContext.getConnection();
@@ -95,7 +95,7 @@ public class HoaDAO {
     }
     
      //phuong thuc cập nhật sản phẩm (Hoa)
-    public boolean Update (Hoa hoa) throws SQLException
+    public boolean Update (Hoa hoa)
     {
         String sql = "update hoa set tenhoa=?,gia=?,hinh=?,maloai=?,ngaycapnhat=? where mahoa=?";
         conn = DbContext.getConnection();
@@ -117,7 +117,7 @@ public class HoaDAO {
     }
     
     //phuong thuc xoá sản phẩm (Hoa)
-    public boolean Delete (int mahoa) throws SQLException
+    public boolean Delete (int mahoa)
     {
         String sql = "delete from hoa where mahoa=?";
         conn = DbContext.getConnection();
@@ -134,7 +134,7 @@ public class HoaDAO {
     } 
     
     //phuong thuc lấy thông tin sản phẩm (Hoa) theo mã hoa 
-    public Hoa getById(int mahoa) throws SQLException {
+    public Hoa getById(int mahoa) {
         Hoa kq=null;
         String sql = "select * from Hoa where mahoa=?";
         conn = DbContext.getConnection();
@@ -151,7 +151,7 @@ public class HoaDAO {
         return kq;
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         HoaDAO hoaDao = new HoaDAO();
         System.out.println("Lay tat ca hoa");
         ArrayList<Hoa> dsHoa = hoaDao.getAll();

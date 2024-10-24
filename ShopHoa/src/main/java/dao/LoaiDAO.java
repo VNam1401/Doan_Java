@@ -19,7 +19,7 @@ public class LoaiDAO {
     PreparedStatement ps;
     ResultSet rs;
 
-    public ArrayList<Loai> getAll() throws SQLException {
+    public ArrayList<Loai> getAll() {
         ArrayList<Loai> ds = new ArrayList<>();
         String sql = "select * from Loai";
         conn = DbContext.GetConnection();
@@ -35,7 +35,7 @@ public class LoaiDAO {
         return ds;
     }
     
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args){
         LoaiDAO loaiDAO = new LoaiDAO();
         
         ArrayList<Loai> dsLoai = loaiDAO.getAll();  
