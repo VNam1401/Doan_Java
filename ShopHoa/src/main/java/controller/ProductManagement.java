@@ -5,8 +5,11 @@
 package controller;
 
 import dao.HoaDAO;
+import dao.LoaiDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -14,7 +17,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import model.Hoa;
+import model.Loai;
 
 /**
  *
@@ -28,6 +33,7 @@ public class ProductManagement extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         HoaDAO hoaDAO = new HoaDAO();
+        LoaiDAO loai = new LoaiDAO();
         String action = "list";
         if (request.getParameter("action") != null) {
             action = request.getParameter("action");
@@ -35,21 +41,35 @@ public class ProductManagement extends HttpServlet {
         switch (action) {
             case "list":
                 ArrayList<Hoa> dsHoa = hoaDAO.getAll();//Lấy dữ liệu từ tầng hoa
+                ArrayList<Loai> dsloai = loai.getAll();
+
                 request.setAttribute("dsHoa", dsHoa); // truyền dữ liệu từ servlet qua JSP
                 request.getRequestDispatcher("admin/list_product.jsp").forward(request, response);
                 break;
             case "add":
-                System.out.println("add");
-                //Xử lý trả về giao điện thêm mới
-                request.getRequestDispatcher("admin/add_product.jsp").forward(request, response);
-                break;
+                if (request.getMethod().equalsIgnoreCase("get")) {
+                    request.setAttribute("dsloai", loai.getAll());
+                    request.getRequestDispatcher("admin/list_product.jsp").forward(request, response);
+                } else if (request.getMethod().equalsIgnoreCase("post")) {
+                    String tenhoa = request.getParameter("tenhoa");
+                    double gia = Double.parseDouble(request.getParameter("gia"));
+                    Part part = request.getPart("hinh");
+                    int maloai = Integer.parseInt(request.getParameter("maloai"));
+                    String RealPath = request.getServletContext().getRealPath("./assets/images/product");
+                    String filename = Paths.get(part.getSubmittedFileName()).getFileName().Tostring();
+                    part.write(RealPath + "/" + filename);
+                    Hoa objInsert = new Hoa(0, tenhoa, gia, filename, maloai, new Date(new java.util.Date().getTime()));
+                    if (hoaDAO.Insert(objInsert)) {
+                        request.setAttribute("success", "Thêm các sản phẩm thành công");
+                    } else {
+                        request.setAttribute("error", "Thêm sản phẩm thất bại");
+                    }
+                    break;
+                }
             case "edit":
                 System.out.println("edit");
                 //Xử lý trả về giao điện cập nhật
                 request.getRequestDispatcher("admin/edit_product.jsp").forward(request, response);
-                break;
-            case "update":
-                System.out.println("update");
                 break;
             case "delete":
                 System.out.println("delete");

@@ -1,40 +1,41 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.Hoa" %>
-<%
-    ArrayList<Hoa> dsHoa = (ArrayList<Hoa>) request.getAttribute("dsHoa");
-%>
-<html>
-<head>
-    <title>Product List</title>
-</head>
-<body>
-    <h1>Product List</h1>
-    <a href="ProductManagement?action=add">Add New Product</a>
-    <table border="1">
+<%-- 
+    Document   : list_product
+    Created on : Oct 22, 2024, 2:11:45 PM
+    Author     : ADMIN
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<jsp:include page="../shared/header.jsp" />
+             
+<jsp:include page="../shared/nav.jsp" />
+
+
+<div class="container">
+    <h2> Danh sách sản phẩm</h2>
+    <div class="mb-2 text-end">
+        <a href="#" class="btn btn-success"> <i class="bi bi-plus-circle"></i> Thêm mới</a>
+    </div>
+    
+    <table class="table table-bordered table-striped">
         <tr>
-            <th>Tên Hoa</th>
+            <th>Tên hoa</th>
             <th>Giá</th>
-            <th>Hình Ảnh</th>
-            <th>Thể Loại</th>
-            <th>Actions</th>
-        </tr>
-        <%
-            for (Hoa hoa : dsHoa) {
-        %>
+            <th>Hình ảnh</th>
+            <th>Loại</th>
+            <th>Action</th>
+        </tr>  
         <tr>
-            <td><%= hoa.getTenhoa()%></td>
-            <td><%= hoa.getGia()%></td>
-            <td><%= hoa.getHinh()%></td>
-            <td><%= hoa.getMaloai()%></td>
+            <td>Name 1</td>
+            <td>Giá 1</td>
+            <td> <img src="../assets/images/flower.jpg" style="width: 100px">  </td>
+            <td>Loai 1</td>
             <td>
-                <a href="ProductManagement?action=edit&id=<%= hoa.getTenhoa()%>">Edit</a>
-                <a href="delete_product.jsp?id=<%= hoa.getTenhoa()%>">Delete</a>
+                 <a href="#" class="btn btn-secondary"> <i class="bi bi-pencil-square"></i> Sửa</a>
+                 <a href="#" class="btn btn-danger"> <i class="bi bi-trash"></i> Xoá</a>
             </td>
-        </tr>
-        <%
-            }
-        %>
+        </tr>          
     </table>
-</body>
-</html>
+</div>
+
+<jsp:include page="../shared/footer.jsp" />

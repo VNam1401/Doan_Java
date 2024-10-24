@@ -1,22 +1,39 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Add Product</title>
-</head>
-<body>
-    <h1>Add New Product</h1>
-    <form action="ProductManagement?action=add" method="post">
-        <label for="name">Product Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
-        
-        <label for="price">Price:</label><br>
-        <input type="number" id="price" name="price" required><br><br>
-        
-        <label for="quantity">Quantity:</label><br>
-        <input type="number" id="quantity" name="quantity" required><br><br>
-        
-        <input type="submit" value="Add Product">
-    </form>
-    <a href="ProductManagement?action=list">Back to Product List</a>
-</body>
-</html>
+<%-- 
+    Document   : add_product
+    Created on : Oct 22, 2024, 2:11:57 PM
+    Author     : ADMIN
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<jsp:include page="../shared/header.jsp" />
+
+<jsp:include page="../shared/nav.jsp" />
+
+<div class="container">
+    
+    <h2>Thêm sản phẩm (Hoa)</h2>    
+    <form method="post">
+        <div class="mb-2">
+            <label>Tên hoa</label>
+            <input type="text" name="tenhoa" required="" value="" class="form-control" />
+        </div>
+        <div class="mb-2">
+            <label>Giá</label>
+            <input type="number" name="gia" required="" value="" class="form-control" />
+        </div>
+        <div class="mb-2">
+            <label>Hình ảnh</label>
+            <input type="file" name="hinh" required="" value="" class="form-control" />
+        </div>
+         <div class="mb-2">
+            <label>Thể loại</label>
+            <select name="maloai" class="form-control">      
+                <option value="" disabled="">==Chọn thể loại==</option>
+            </select>
+        </div>        
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>       
+</div>
+
+<jsp:include page="../shared/footer.jsp" />
