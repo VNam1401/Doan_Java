@@ -1,7 +1,7 @@
 <%-- 
     Document   : add_product
     Created on : Oct 22, 2024, 2:11:57 PM
-    Author     : ADMIN
+    Author     : admin
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

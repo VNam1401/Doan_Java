@@ -12,6 +12,8 @@ import java.nio.file.Paths;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,14 +58,16 @@ public class ProductManagement extends HttpServlet {
                     Part part = request.getPart("hinh");
                     int maloai = Integer.parseInt(request.getParameter("maloai"));
                     String RealPath = request.getServletContext().getRealPath("./assets/images/product");
-                    String filename = Paths.get(part.getSubmittedFileName()).getFileName().Tostring();
+                    String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+
                     part.write(RealPath + "/" + filename);
                     Hoa objInsert = new Hoa(0, tenhoa, gia, filename, maloai, new Date(new java.util.Date().getTime()));
                     if (hoaDAO.Insert(objInsert)) {
-                        request.setAttribute("success", "Thêm các sản phẩm thành công");
+                        request.setAttribute("success", "Thêm sản phẩm thành công");
                     } else {
                         request.setAttribute("error", "Thêm sản phẩm thất bại");
                     }
+                    request.getRequestDispatcher("admin/list_product.jsp").forward(request, response);
                     break;
                 }
             case "edit":
@@ -72,22 +76,16 @@ public class ProductManagement extends HttpServlet {
                 request.getRequestDispatcher("admin/edit_product.jsp").forward(request, response);
                 break;
             case "delete":
-                System.out.println("delete");
+                int productID = Integer.parseInt(request.getParameter("id"));
+                if (hoaDAO.Delete(productID)) {
+                    request.setAttribute("success", "Xóa sản phẩm thành công");
+                } else {
+                    request.setAttribute("error", "Xóa sản phẩm thất bại");
+                }
+                response.sendRedirect("ProductManagement?action=list");
                 break;
             default:
                 throw new AssertionError();
-        }
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProductManagement</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProductManagement at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 
@@ -103,7 +101,11 @@ public class ProductManagement extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -117,7 +119,11 @@ public class ProductManagement extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

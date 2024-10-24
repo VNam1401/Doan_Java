@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>Flower shop</title>
-        //thêm logo
         <link href="../assets/images/logo.png" rel="shortcut icon" />
 
         <!-- link Bootstrap CSS -->

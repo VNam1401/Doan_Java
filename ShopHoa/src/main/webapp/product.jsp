@@ -1,7 +1,7 @@
 <%-- 
-    Document   : list.jsp
-    Created on : Sep 15, 2023, 8:14:39 AM
-    Author     : KHOACNTT
+    Document   : product
+    Created on : 25 thg 10, 2024, 00:30:32
+    Author     : nguyenvannam
 --%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Hoa"%>
