@@ -31,8 +31,8 @@
             <td> <img src="../assets/images/flower.jpg" style="width: 100px">  </td>
             <td>Loai 1</td>
             <td>
-                 <a href="#" class="btn btn-secondary"> <i class="bi bi-pencil-square"></i> Sửa</a>
-                 <a href="#" class="btn btn-danger"> <i class="bi bi-trash"></i> Xoá</a>
+                <a href="" class="btn btn-secondary"> <i class="bi bi-pencil-square"></i> Sửa</a>
+                <a href="" class="btn btn-danger"> <i class="bi bi-trash"></i> Xoá</a>
             </td>
         </tr>          
     </table>
