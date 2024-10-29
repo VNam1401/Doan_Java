@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Hoa;
+import static sun.jvm.hotspot.debugger.x86.X86ThreadContext.PS;
 
 /**
  *
@@ -151,10 +152,28 @@ public class HoaDAO {
         return kq;
     }
 
+    public ArrayList<Hoa> getByPage(int pageIndex, int pageSize) {
+        ArrayList<Hoa> ds = new ArrayList<>();
+        String sql = "select * from Hoa order by mahoa OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        conn = DbContext.getConnection();
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, (pageIndex - 1) * pageSize);
+            ps.setInt(2, pageSize);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ds.add(new Hoa(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getInt(5), rs.getDate(6)));
+            }
+        } catch (Exception ex) {
+            System.out.println("Loi" + ex.toString());
+        }
+        return ds;
+    }
+
     public static void main(String[] args) throws SQLException {
         HoaDAO hoaDao = new HoaDAO();
         System.out.println("Lay tat ca hoa");
-        ArrayList<Hoa> dsHoa = hoaDao.getAll();
+        ArrayList<Hoa> dsHoa = hoaDao.getByPage(2, 5);
         for (Hoa hoa : dsHoa) {
             System.out.println(hoa);
         }
@@ -165,5 +184,5 @@ public class HoaDAO {
         if (kq != null) {
             System.out.println(kq);
         }
-    }    
+    }
 }

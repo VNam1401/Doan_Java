@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -42,7 +43,16 @@ public class ProductManagement extends HttpServlet {
         }
         switch (action) {
             case "list":
-                request.setAttribute("dsHoa", hoaDAO.getAll());
+                int pageSize = 10;
+                int pageIndex = 1;
+                if (request.getParameter("page") != null) {
+                    pageIndex = Integer.parseInt(request.getParameter("page"));
+                }
+                int pageSum = (int) Math.ceil((double) hoaDAO.getAll().size() / pageSize);
+                ArrayList<Hoa> dsHoa = hoaDAO.getByPage(pageIndex, pageSize);
+                request.setAttribute("dsHoa", dsHoa);
+                request.setAttribute("pageSum", pageSum);
+                request.setAttribute("pageIndex", pageIndex);
                 request.getRequestDispatcher("admin/list_product.jsp").forward(request, response);
                 break;
             case "add":

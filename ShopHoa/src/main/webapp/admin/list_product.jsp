@@ -47,14 +47,23 @@
             <td> <img src="assets/images/products/<%=x.getHinh()%>" style="width: 100px">  </td>
             <td><%=x.getMaloai()%></td>
             <td>
-                <a href="ManageProduct?action=edit&mahoa= <%=x.getMahoa()%>" class="btn btn-secondary"> <i class="bi bi-pencil-square"></i> Sửa</a>
-                <a href="ManageProduct?action=delete&mahoa= <%=x.getMahoa()%>" class="btn btn-danger"> <i class="bi bi-trash"></i> Xoá</a>
+                <a href="ProductManagement?action=edit&mahoa= <%=x.getMahoa()%>" class="btn btn-secondary"> <i class="bi bi-pencil-square"></i> Sửa</a>
+                <a href="ProductManagement?action=delete&mahoa= <%=x.getMahoa()%>" class="btn btn-danger"> <i class="bi bi-trash"></i> Xoá</a>
             </td>
         </tr>    
         <%
             }
         %>
     </table>
+    Chọn trang:
+    <%
+        int pageSum = (int) request.getAttribute("pageSum");
+        for (int i = 1; i <= pageSum; i++) {
+    %>
+    <a href="ProductManagement?page=<%=i%>"><%=i%></a>
+    <%
+        }
+    %>
 </div>
 
 <jsp:include page="../shared/footer.jsp" />
