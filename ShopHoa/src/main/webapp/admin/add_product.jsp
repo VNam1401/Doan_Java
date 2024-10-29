@@ -4,6 +4,8 @@
     Author     : admin
 --%>
 
+<%@page import="model.Loai"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <jsp:include page="../shared/header.jsp" />
@@ -11,7 +13,7 @@
 <jsp:include page="../shared/nav.jsp" />
 
 <div class="container">
-    
+
     <h2>Thêm sản phẩm (Hoa)</h2>    
     <form method="post">
         <div class="mb-2">
@@ -26,7 +28,7 @@
             <label>Hình ảnh</label>
             <input type="file" name="hinh" required="" value="" class="form-control" />
         </div>
-         <div class="mb-2">
+        <div class="mb-2">
             <label>Thể loại</label>
             <select name="maloai" class="form-control">      
                 <option value="" disabled="">==Chọn thể loại==</option>
