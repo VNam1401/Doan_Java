@@ -78,7 +78,7 @@ public class ProductManagement extends HttpServlet {
                         request.setAttribute("error", "Thêm sản phẩm thất bại");
                     }
                     // chuyển tiếp  người dùng về action=LIST để liệt kê lại danh sách sản phẩm
-                    request.getRequestDispatcher("ManageProduct?action=LIST").forward(request, response);
+                    request.getRequestDispatcher("ManageProduct?action=list").forward(request, response);
                 }
                 break;
             case "edit":
@@ -107,7 +107,7 @@ public class ProductManagement extends HttpServlet {
                     } else {
                         request.setAttribute("error", "Cập nhật sản phẩm thất bại");
                     }
-                    request.getRequestDispatcher("ManageProduct?action=LIST").forward(request, response);
+                    request.getRequestDispatcher("ManageProduct?action=list").forward(request, response);
                 }
                 break;
             case "delete":

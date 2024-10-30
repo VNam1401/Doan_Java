@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Hoa;
-import static sun.jvm.hotspot.debugger.x86.X86ThreadContext.PS;
-
 /**
  *
  * @author Administrator
@@ -152,7 +150,7 @@ public class HoaDAO {
         return kq;
     }
 
-    public ArrayList<Hoa> getByPage(int pageIndex, int pageSize) {
+    public ArrayList<Hoa> getByPage(int pageIndex, int pageSize) throws SQLException {
         ArrayList<Hoa> ds = new ArrayList<>();
         String sql = "select * from Hoa order by mahoa OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         conn = DbContext.getConnection();

@@ -44,7 +44,7 @@
                                     <p class="btn btn-danger btn-block"> <%= x.getGia()%> </p>
                                 </div>
                                 <div class="col">
-                                    <a href="./product.jsp" class="btn btn-success btn-block">Add to cart</a>
+                                    <a href="product.jsp" class="btn btn-success btn-block">Add to cart</a>
                                 </div>
                             </div>
                         </div>
