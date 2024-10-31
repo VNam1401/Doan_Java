@@ -29,17 +29,21 @@
             <input type="file" name="hinh" required="" value="" class="form-control" />
         </div>
 
-        <div class="mb-2">
+       <div class="mb-2">
             <label>Thể loại</label>
-            <select name="maloai" class="form-select" aria-label="Default select example">
-                <option value="" >Hoa tươi bó</option>
-                <option value="">Hoa tươi giỏ</option>
-                <option value="">Hoa tươi bình</option>
-                <option value="">Hoa văn phòng</option>
-                <option value="">Hoa chúc mừng</option>
-                <option value="">Hoa cưới</option>
+            <select name="maloai" class="form-control" required="">      
+                <option value="" disabled="">==Chọn thể loại==</option>
+                <%
+                    ArrayList<Loai> dsLoai=(ArrayList<Loai>)request.getAttribute("dsLoai");
+                    for(Loai loai:dsLoai)
+                    {
+                %>
+                <option value="<%=loai.getMaloai() %>"><%=loai.getTenloai() %></option>
+                <%
+                    }
+                %>
             </select>
-        </div>        
+        </div>    
         <button type="submit" class="btn btn-primary">Save</button>
     </form>       
 </div>

@@ -25,7 +25,7 @@
         <div class="col-sm-12">
             <div class="row">   
                 <%
-                    DecimalFormat fmt = new DecimalFormat("#,##0");
+                    // DecimalFormat fmt =new DecimalFormat("#,##0");
                     HoaDAO hoaDAO = new HoaDAO();   //tạo đối tượng DAO
                     ArrayList<Hoa> dsHoa = hoaDAO.getTop10();
                     for (Hoa x : dsHoa) {
@@ -44,7 +44,7 @@
                                     <p class="btn btn-danger btn-block"> <%= x.getGia()%> </p>
                                 </div>
                                 <div class="col">
-                                    <a href="product.jsp" class="btn btn-success btn-block">Add to cart</a>
+                                    <a href="#" class="btn btn-success btn-block">Add to cart</a>
                                 </div>
                             </div>
                         </div>
@@ -60,4 +60,4 @@
 
 </div><!-- /.container -->
 <!--nhung noi dung footer.jsp-->
-<jsp:include page="shared/footer.jsp" />   
+<jsp:include page="shared/footer.jsp" />

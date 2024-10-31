@@ -16,6 +16,28 @@
                 <li class="nav-item">
                     <a class="nav-link" href="ProductManagement">Manager</a>
                 </li>
+            </ul>
+            <ul>
+                <%
+                    if (session.getAttribute("username") != null) {
+                %>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Wellcome<%=session.getAttribute("username")%></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="LoginServlet">Logout</a>
+                </li>
+                <%
+                } else {
+                %>
+                <li class="nav-item">
+                    <a class="nav-link" href="Login.jsp">Login</a>
+                </li>
+                <%
+                    }
+                %>
+            </ul>
+
         </div>
     </div>
 </nav>
