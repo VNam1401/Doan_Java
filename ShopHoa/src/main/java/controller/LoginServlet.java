@@ -5,7 +5,7 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,15 +32,17 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if (username.equalsIgnoreCase("admin") && password.equals("admin"))//Thành công
+//kiểm tra thông tin đăng nhập
+        if (username.equalsIgnoreCase("admin") && password.equals("admin")) //thành công
         {
             HttpSession session = request.getSession();
+//lưu thông tin trạng thái đăng nhập vào session của người dùng
             session.setAttribute("username", username);
-            response.sendRedirect("home.jsp");
-        } else // Thất bại
+            response.sendRedirect("home.jsp"); // chuyển hướng đến trang home.jsp
+        } else //thất bại
         {
-            request.setAttribute("error", "Đăng nhập không thành công do sai tên đăng nhập hoặc mật khẩu");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            request.setAttribute("error", "Đăng nhập thất bại do sai tên đăng nhập hoặc mật khẩu");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 

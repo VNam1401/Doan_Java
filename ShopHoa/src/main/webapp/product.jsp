@@ -8,9 +8,8 @@
 <%@page import="dao.HoaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<!--nhung noi dung header.jsp-->
+<!--Nhúng nội dung header.jsp và nav.jsp-->
 <jsp:include page="shared/header.jsp" />
-<!--nhung noi dung nav.jsp-->
 <jsp:include page="shared/nav.jsp" />
 <section class="bg-body-secondary text-center">
     <div class="container">
@@ -20,12 +19,15 @@
 </section>
 
 <%
+    // Lấy tham số mã loại
      String maloai = request.getParameter("maloai");
+     //kiểm tra nếu mã loại không null chuyển "maloai" sang số nguyên và lưu vào 'loai' - là 1 nếu không có tham số
      int loai=1;     
      if(maloai!=null)
      {       
         loai = Integer.parseInt(maloai);
-     }         
+     }    
+//khởi tạo dao tư HoaDAO lấy ds từ MySQL     
      HoaDAO  dao = new HoaDAO();  
      ArrayList<Hoa> dsHoa = dao.getByCategoryId(loai);
 %>

@@ -8,8 +8,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<jsp:include page="../shared/header.jsp" />
 
+<jsp:include page="../shared/header.jsp" />
 <jsp:include page="../shared/nav.jsp" />
 
 <div class="container">
@@ -29,16 +29,17 @@
             <input type="file" name="hinh" required="" value="" class="form-control" />
         </div>
 
-       <div class="mb-2">
+        <div class="mb-2">
             <label>Thể loại</label>
-            <select name="maloai" class="form-control" required="">      
-                <option value="" disabled="">==Chọn thể loại==</option>
+            <select name="maloai" class="form-select" required="">      
+                <option disabled="" value="" selected>Chọn thể loại<option>
                 <%
-                    ArrayList<Loai> dsLoai=(ArrayList<Loai>)request.getAttribute("dsLoai");
-                    for(Loai loai:dsLoai)
-                    {
+                    //Lấy danh sách từ các loại hoa của thuộc tính theo yêu cầu
+                    ArrayList<Loai> dsLoai = (ArrayList<Loai>) request.getAttribute("dsLoai");
+                    for (Loai loai : dsLoai) {
                 %>
-                <option value="<%=loai.getMaloai() %>"><%=loai.getTenloai() %></option>
+                //Lặp qua từng loại hoa
+                <option value="<%=loai.getMaloai()%>"><%=loai.getTenloai()%></option>
                 <%
                     }
                 %>

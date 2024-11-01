@@ -17,21 +17,23 @@
                     <a class="nav-link" href="ProductManagement">Manager</a>
                 </li>
             </ul>
-            <ul>
+            
+            
+            <ul class="navbar-nav">
                 <%
                     if (session.getAttribute("username") != null) {
                 %>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Wellcome<%=session.getAttribute("username")%></a>
+                    <a class="nav-link" href="#"> Welcome <%=session.getAttribute("username")%> </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="LoginServlet">Logout</a>
+                    <a class="nav-link" href="LogoutServlet"> Logout </a>
                 </li>
                 <%
                 } else {
                 %>
                 <li class="nav-item">
-                    <a class="nav-link" href="Login.jsp">Login</a>
+                    <a class="nav-link" href="login.jsp"> Login </a>
                 </li>
                 <%
                     }

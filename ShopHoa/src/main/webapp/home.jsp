@@ -3,16 +3,21 @@
     Created on : 25 thg 10, 2024, 00:30:32
     Author     : nguyenvannam
 --%>
+<!--Định dạng số-->
 <%@page import="java.text.DecimalFormat"%>
+<!--danh sách hoa-->
 <%@page import="java.util.ArrayList"%>
+<!--Khai báo lớp hoa-->
 <%@page import="model.Hoa"%>
+<!--truy xuất biểu tượng lớp HoaDAO-->
 <%@page import="dao.HoaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<!--nhung noi dung header.jsp-->
+<!--Nhúng nội dung header.jsp và nav.jsp-->
 <jsp:include page="shared/header.jsp" />
-<!--nhung noi dung nav.jsp-->
 <jsp:include page="shared/nav.jsp" />
+
+<!--tạo giao diện--> 
 <section class="bg-body-secondary text-center">
     <div class="container">
         <h1 class="jumbotron-heading text-muted">Shop Hoa Tươi</h1>
@@ -20,15 +25,24 @@
     </div>
 </section>
 
+
+<!--tạo bố cục container và chia các cột-->
 <div class="container" id="main-content">
     <div class="row">       
         <div class="col-sm-12">
             <div class="row">   
                 <%
-                    // DecimalFormat fmt =new DecimalFormat("#,##0");
-                    HoaDAO hoaDAO = new HoaDAO();   //tạo đối tượng DAO
+//                    căn chỉnh số
+                    DecimalFormat fmt = new DecimalFormat("#,##0");
+
+//                    lấy danh sách HoaDAO từ MySQL
+                    HoaDAO hoaDAO = new HoaDAO();   //tạo đối tượng hoaDAO
+
+//                    lấy 10 hoa đầu tiên từ MySQL
                     ArrayList<Hoa> dsHoa = hoaDAO.getTop10();
+//                     (vòng lặp for() )duyệt đối tượng Hoa trong danh sách hoa(dsHoa) - Hiển thị thông tin của từng hoa
                     for (Hoa x : dsHoa) {
+
                 %>
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card mb-2">
@@ -50,14 +64,16 @@
                         </div>
                     </div>              
                 </div>  
+                <!--kết thúc vòng lặp for-->
                 <%
                     }
                 %>
+
             </div>                       
         </div>
     </div>
 </div>    
 
 </div><!-- /.container -->
-<!--nhung noi dung footer.jsp-->
+<!--nhúng nội dung footer.jsp-->
 <jsp:include page="shared/footer.jsp" />

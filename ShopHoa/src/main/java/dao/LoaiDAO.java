@@ -9,6 +9,7 @@ import context.DbContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Loai;
 
@@ -18,7 +19,7 @@ public class LoaiDAO {
     PreparedStatement ps;
     ResultSet rs;
 
-    public ArrayList<Loai> getAll() {
+    public ArrayList<Loai> getAll() throws SQLException {
         ArrayList<Loai> ds = new ArrayList<>();
         String sql = "select * from Loai";
         conn = DbContext.getConnection();
@@ -34,7 +35,7 @@ public class LoaiDAO {
         return ds;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         LoaiDAO loaiDAO = new LoaiDAO();
 
         ArrayList<Loai> dsLoai = loaiDAO.getAll();

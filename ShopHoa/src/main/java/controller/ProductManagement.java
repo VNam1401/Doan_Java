@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import model.Hoa;
 
@@ -33,16 +34,25 @@ public class ProductManagement extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("username") == null) //chưa đăng nhập
+        {
+//chuyển tiếp đến trang login.jsp
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
+
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         HoaDAO hoaDAO = new HoaDAO();
         LoaiDAO loaidao = new LoaiDAO();
+
         String action = "list";
         if (request.getParameter("action") != null) {
             action = request.getParameter("action");
         }
         switch (action) {
             case "list":
+                //Phân kích thước trang (tb 10/1)
                 int pageSize = 10;
                 int pageIndex = 1;
                 if (request.getParameter("page") != null) {
@@ -53,14 +63,16 @@ public class ProductManagement extends HttpServlet {
                 request.setAttribute("dsHoa", dsHoa);
                 request.setAttribute("pageSum", pageSum);
                 request.setAttribute("pageIndex", pageIndex);
+                //Hiển Thị danh sách sản phẩm
                 request.getRequestDispatcher("admin/list_product.jsp").forward(request, response);
                 break;
-            case "add":
 
-                if (request.getMethod().equals("GET")) {
+            case "add":
+//Lấy thông tin sản phẩm từ from 
+                if (request.getMethod().equals("get")) {
                     request.setAttribute("dsLoai", loaidao.getAll());
                     request.getRequestDispatcher("admin/add_product.jsp").forward(request, response);
-                } else if (request.getMethod().equals("POST")) {
+                } else if (request.getMethod().equals("post")) {
                     String tenhoa = request.getParameter("tenhoa");
                     double gia = Double.parseDouble(request.getParameter("gia"));
                     Part part = request.getPart("hinh");
