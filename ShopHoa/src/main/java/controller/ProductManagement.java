@@ -34,17 +34,16 @@ public class ProductManagement extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        HttpSession session = request.getSession();
-        if (session.getAttribute("username") == null) //chưa đăng nhập
-        {
-//chuyển tiếp đến trang login.jsp
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         HoaDAO hoaDAO = new HoaDAO();
         LoaiDAO loaidao = new LoaiDAO();
+//        HttpSession session = request.getSession();
+//        if (session.getAttribute("username") == null) //chưa đăng nhập
+//        {
+////chuyển tiếp đến trang login.jsp
+//            request.getRequestDispatcher("login.jsp").forward(request, response);
+//        }
 
         String action = "list";
         if (request.getParameter("action") != null) {

@@ -15,11 +15,11 @@
 <jsp:include page="../shared/nav.jsp" />
 
 <div class="container">
-    <% 
-        Hoa hoa=(Hoa)request.getAttribute("hoa");
-        ArrayList<Loai>dsLoai=(ArrayList<Loai>)request.getAttribute("dsLoai");
+    <%
+        Hoa hoa = (Hoa) request.getAttribute("hoa");
+        ArrayList<Loai> dsLoai = (ArrayList<Loai>) request.getAttribute("dsLoai");
     %>
-    
+
     <h2>Cập nhật sản phẩm (Hoa)</h2>    
     <form method="post">
         <div class="mb-2">
@@ -36,18 +36,17 @@
             <img src="assets/images/products<%=hoa.getHinh()%>" width="150px"/>
             <input type="hidden" name="oldImg" value="<%=hoa.getHinh()%>">
         </div>
-         <div class="mb-2">
+        <div class="mb-2">
             <label>Thể loại</label>
             <select name="maloai" class="form-control">      
                 <option value="" disabled="">==Chọn thể loại==</option>
                 <%
-                    for(Loai loai:dsLoai){
+                    for (Loai loai : dsLoai) {
                 %>
-                <option value="<%=loai.getMaloai()%>"<%=hoa.getMaloai()==loai.getMaloai()?"selected":""%>><%=loai.getTenloai()%></option>
+                <option value="<%=loai.getMaloai()%>"<%=hoa.getMaloai() == loai.getMaloai() ? "selected" : ""%>><%=loai.getTenloai()%></option>
                 <%
                     }
                 %>
-                
             </select>
         </div>        
         <button type="submit" class="btn btn-primary">Save</button>

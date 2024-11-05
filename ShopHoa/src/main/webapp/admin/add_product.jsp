@@ -31,20 +31,18 @@
 
         <div class="mb-2">
             <label>Thể loại</label>
-            <select name="maloai" class="form-select" required="">      
-                <option disabled="" value="" selected>Chọn thể loại<option>
+            <select name="maloai" class="form-control" required="">      
+                <option value="" disabled="">==Chọn thể loại==</option>
                 <%
-                    //Lấy danh sách từ các loại hoa của thuộc tính theo yêu cầu
                     ArrayList<Loai> dsLoai = (ArrayList<Loai>) request.getAttribute("dsLoai");
                     for (Loai loai : dsLoai) {
                 %>
-                //Lặp qua từng loại hoa
                 <option value="<%=loai.getMaloai()%>"><%=loai.getTenloai()%></option>
                 <%
                     }
                 %>
             </select>
-        </div>    
+        </div>        
         <button type="submit" class="btn btn-primary">Save</button>
     </form>       
 </div>
