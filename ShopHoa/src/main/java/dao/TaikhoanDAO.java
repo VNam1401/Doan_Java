@@ -8,6 +8,7 @@ import context.DbContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import model.TaiKhoan;
 
 /**
@@ -20,7 +21,7 @@ public class TaikhoanDAO {
     PreparedStatement ps;
     ResultSet rs;
 
-    public TaiKhoan checkLogin(String Tendangnhap, String Matkhau) {
+    public TaiKhoan checkLogin(String Tendangnhap, String Matkhau) throws SQLException {
         TaiKhoan kq = null;
         String sql = "select * from Taikhoan where Tendangnhap=? and Matkhau=?";
         conn = DbContext.getConnection();

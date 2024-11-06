@@ -29,4 +29,8 @@ public class TaiKhoan {
         this.Matkhau = matkhau;
     }
     
+    @Override
+    public String toString() {
+        return "Taikhoan{" + "ten\u0110N=" + Taikhoan + ", MK=" + Matkhau + '}';
+    } 
 }
