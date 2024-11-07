@@ -2,9 +2,8 @@
 <%-- 
     Document   : list_product
     Created on : Oct 22, 2024, 2:11:45 PM
-    Author     : ADMIN
+    Author     : admin
 --%>
-
 <%@page import="model.Hoa"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

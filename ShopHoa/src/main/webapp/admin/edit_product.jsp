@@ -13,7 +13,6 @@
 <jsp:include page="../shared/header.jsp" />
 
 <jsp:include page="../shared/nav.jsp" />
-
 <div class="container">
     <%
         Hoa hoa = (Hoa) request.getAttribute("hoa");
@@ -21,7 +20,7 @@
     %>
 
     <h2>Cập nhật sản phẩm (Hoa)</h2>    
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="mb-2">
             <label>Tên hoa</label>
             <input type="text" name="tenhoa" value="<%=hoa.getTenhoa()%>" class="form-control" required="" />
@@ -33,8 +32,8 @@
         <div class="mb-2">
             <label>Hình ảnh</label>
             <input type="file" name="hinh" value="" class="form-control" />
-            <img src="assets/images/products<%=hoa.getHinh()%>" width="150px"/>
-            <input type="hidden" name="oldImg" value="<%=hoa.getHinh()%>">
+            <img src="assets/images/products/<%=hoa.getHinh()%>" width="150px"/>
+            <input type="hidden" name="oldimg" value="<%=hoa.getHinh()%>">
         </div>
         <div class="mb-2">
             <label>Thể loại</label>
@@ -43,7 +42,7 @@
                 <%
                     for (Loai loai : dsLoai) {
                 %>
-                <option value="<%=loai.getMaloai()%>"<%=hoa.getMaloai() == loai.getMaloai() ? "selected" : ""%>><%=loai.getTenloai()%></option>
+                <option value="<%=loai.getMaloai()%>"<%=hoa.getMaloai() == loai.getMaloai() ? "selected" : " "%>><%=loai.getTenloai()%></option>
                 <%
                     }
                 %>

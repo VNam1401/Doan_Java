@@ -38,12 +38,12 @@ public class ProductManagement extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HoaDAO hoaDAO = new HoaDAO();
         LoaiDAO loaidao = new LoaiDAO();
-//        HttpSession session = request.getSession();
-//        if (session.getAttribute("username") == null) //chưa đăng nhập
-//        {
-////chuyển tiếp đến trang login.jsp
-//            request.getRequestDispatcher("login.jsp").forward(request, response);
-//        }
+        HttpSession session = request.getSession();
+        if (session.getAttribute("username") == null) //chưa đăng nhập
+        {
+//chuyển tiếp đến trang login.jsp
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
 
         String action = "list";
         if (request.getParameter("action") != null) {
@@ -68,16 +68,16 @@ public class ProductManagement extends HttpServlet {
 
             case "add":
 //Lấy thông tin sản phẩm từ from 
-                if (request.getMethod().equals("get")) {
+                if (request.getMethod().equals("GET")) {
                     request.setAttribute("dsLoai", loaidao.getAll());
                     request.getRequestDispatcher("admin/add_product.jsp").forward(request, response);
-                } else if (request.getMethod().equals("post")) {
+                } else if (request.getMethod().equals("POST")) {
                     String tenhoa = request.getParameter("tenhoa");
                     double gia = Double.parseDouble(request.getParameter("gia"));
                     Part part = request.getPart("hinh");
                     int maloai = Integer.parseInt(request.getParameter("maloai"));
 
-                    String realPath = request.getServletContext().getRealPath("assets/images/products");
+                    String realPath = request.getServletContext().getRealPath("assets/images/products/");
                     String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
                     part.write(realPath + "/" + filename);
 
@@ -94,13 +94,13 @@ public class ProductManagement extends HttpServlet {
                 break;
             case "edit":
 
-                if (request.getMethod().equalsIgnoreCase("get")) {
+                if (request.getMethod().equalsIgnoreCase("GET")) {
                     int mahoa = Integer.parseInt(request.getParameter("mahoa"));
                     request.setAttribute("hoa", hoaDAO.getById(mahoa));
                     request.setAttribute("dsLoai", loaidao.getAll());
                     request.getRequestDispatcher("admin/edit_product.jsp").forward(request, response);
 
-                } else if (request.getMethod().equalsIgnoreCase("post")) {
+                } else if (request.getMethod().equalsIgnoreCase("POST")) {
                     int mahoa = Integer.parseInt(request.getParameter("mahoa"));
                     String tenhoa = request.getParameter("tenhoa");
                     double gia = Double.parseDouble(request.getParameter("gia"));
@@ -118,7 +118,7 @@ public class ProductManagement extends HttpServlet {
                     } else {
                         request.setAttribute("error", "Cập nhật sản phẩm thất bại");
                     }
-                    request.getRequestDispatcher("ProductManogement?action=list").forward(request, response);
+                    request.getRequestDispatcher("ProductManagement?action=list").forward(request, response);
                 }
                 break;
             case "delete":

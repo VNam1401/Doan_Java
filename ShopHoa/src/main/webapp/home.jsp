@@ -33,7 +33,7 @@
             <div class="row">   
                 <%
 //                    căn chỉnh số
-                    DecimalFormat fmt = new DecimalFormat("#,##0");
+                    DecimalFormat fmt = new DecimalFormat("#,##0VNĐ");
 
 //                    lấy danh sách HoaDAO từ MySQL
                     HoaDAO hoaDAO = new HoaDAO();   //tạo đối tượng hoaDAO
@@ -55,7 +55,7 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col">
-                                    <p class="btn btn-danger btn-block"> <%= x.getGia()%> </p>
+                                    <p class="btn btn-danger btn-block"> <%=fmt.format(x.getGia())%> </p>
                                 </div>
                                 <div class="col">
                                     <a href="#" class="btn btn-success btn-block">Add to cart</a>

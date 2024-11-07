@@ -12,6 +12,7 @@
 <jsp:include page="../shared/header.jsp" />
 <jsp:include page="../shared/nav.jsp" />
 
+
 <div class="container">
 
     <h2>Thêm sản phẩm (Hoa)</h2>    

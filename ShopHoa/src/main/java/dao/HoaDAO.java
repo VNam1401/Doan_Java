@@ -25,7 +25,7 @@ public class HoaDAO {
 
     public ArrayList<Hoa> getTop10() throws SQLException {
         ArrayList<Hoa> ds = new ArrayList<>();
-        String sql = "select top 10 * from Hoa order by gia desc";
+        String sql = "select top 6 * from Hoa order by gia desc";
         conn = DbContext.getConnection();
         try {
             ps = conn.prepareStatement(sql);
@@ -100,10 +100,10 @@ public class HoaDAO {
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, hoa.getTenhoa());
-            ps.setDouble(2, hoa.getGia());
+            ps.setDouble(2, hoa.getGia());  
             ps.setString(3, hoa.getHinh());
             ps.setInt(4, hoa.getMaloai());
-            ps.setDate(5, hoa.getNgaycapnhat());
+            ps.setDate(5, hoa.getNgaycapnhat());        
             int kq = ps.executeUpdate();
             if (kq > 0) {
                 return true;
@@ -141,7 +141,7 @@ public class HoaDAO {
         String sql = "delete from hoa where mahoa=?";
         conn = DbContext.getConnection();
         try {
-            ps = conn.prepareStatement(sql);
+            ps = conn.prepareStatement(sql);            
             ps.setInt(1, mahoa);
             int kq = ps.executeUpdate();
             if (kq > 0) {
