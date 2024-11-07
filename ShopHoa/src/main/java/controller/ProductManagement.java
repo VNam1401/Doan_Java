@@ -31,7 +31,7 @@ import model.Hoa;
 @MultipartConfig
 
 public class ProductManagement extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         request.setCharacterEncoding("UTF-8");
