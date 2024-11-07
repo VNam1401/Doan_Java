@@ -38,15 +38,4 @@ public class TaikhoanDAO {
         }
         return kq;
     }
-
-    public static void main(String[] args) {
-        TaikhoanDAO tkDAO = new TaikhoanDAO();
-        TaiKhoan tk = new TaiKhoan("nam123", "nam123");
-        if (tk != null) {
-            System.out.println("THanh Cong!");
-        } else {
-            System.out.println("That Bai??");
-        }
-    }
-
 }
